@@ -1,0 +1,31 @@
+version: "3"
+services:
+  zeloserver:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: zeloserver
+    ports:
+      - 3001:3001
+    environment:
+      - .env
+    restart: always
+    depends_on:
+      - DATABASE_USERNAME: bacpham
+      - DATABASE_PASSWORD: phambac572
+      - JWT_SECRET: PhamBaBac
+      - USERNAME_EMAIL: bacphamba082@gmail.com
+      - PASSWORD_EMAIL: vqig sbqu gcsn smfc
+      - AWS_ACCESS_KEY_ID:
+      - AWS_SECRET_ACCESS_KEY:
+      - AWS_REGION:
+      - S3_BUCKET_NAME:
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - zeloserver
